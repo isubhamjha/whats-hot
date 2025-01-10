@@ -34,7 +34,7 @@ class fetchWeatherDetails extends Command
         ])->get(
             'http://api.weatherapi.com/v1/current.json',
             [
-                'key' => 'ef085edc9ca9477d908163140251001',
+                'key' => env('WEATHERAPI_KEY'),
                 'q' => 'katihar'
             ]
         );
