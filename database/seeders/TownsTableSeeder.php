@@ -1,0 +1,122 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class TownsTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $towns = [
+            ['name' => 'Mumbai', 'state' => 'Maharashtra', 'population' => 12442373],
+            ['name' => 'Delhi', 'state' => 'Delhi', 'population' => 11034555],
+            ['name' => 'Bangalore', 'state' => 'Karnataka', 'population' => 8443675],
+            ['name' => 'Hyderabad', 'state' => 'Telangana', 'population' => 6993262],
+            ['name' => 'Ahmedabad', 'state' => 'Gujarat', 'population' => 5577940],
+            ['name' => 'Chennai', 'state' => 'Tamil Nadu', 'population' => 4646732],
+            ['name' => 'Kolkata', 'state' => 'West Bengal', 'population' => 4496694],
+            ['name' => 'Surat', 'state' => 'Gujarat', 'population' => 4467797],
+            ['name' => 'Pune', 'state' => 'Maharashtra', 'population' => 3124458],
+            ['name' => 'Jaipur', 'state' => 'Rajasthan', 'population' => 3046163],
+            ['name' => 'Lucknow', 'state' => 'Uttar Pradesh', 'population' => 2817105],
+            ['name' => 'Kanpur', 'state' => 'Uttar Pradesh', 'population' => 2765348],
+            ['name' => 'Nagpur', 'state' => 'Maharashtra', 'population' => 2405665],
+            ['name' => 'Indore', 'state' => 'Madhya Pradesh', 'population' => 1964086],
+            ['name' => 'Thane', 'state' => 'Maharashtra', 'population' => 1841488],
+            ['name' => 'Bhopal', 'state' => 'Madhya Pradesh', 'population' => 1798218],
+            ['name' => 'Visakhapatnam', 'state' => 'Andhra Pradesh', 'population' => 1728128],
+            ['name' => 'Pimpri-Chinchwad', 'state' => 'Maharashtra', 'population' => 1727692],
+            ['name' => 'Patna', 'state' => 'Bihar', 'population' => 1684222],
+            ['name' => 'Vadodara', 'state' => 'Gujarat', 'population' => 1670806],
+            ['name' => 'Ghaziabad', 'state' => 'Uttar Pradesh', 'population' => 1648643],
+            ['name' => 'Ludhiana', 'state' => 'Punjab', 'population' => 1618879],
+            ['name' => 'Agra', 'state' => 'Uttar Pradesh', 'population' => 1585704],
+            ['name' => 'Nashik', 'state' => 'Maharashtra', 'population' => 1486053],
+            ['name' => 'Faridabad', 'state' => 'Haryana', 'population' => 1414050],
+            ['name' => 'Meerut', 'state' => 'Uttar Pradesh', 'population' => 1305429],
+            ['name' => 'Rajkot', 'state' => 'Gujarat', 'population' => 1286678],
+            ['name' => 'Kalyan-Dombivli', 'state' => 'Maharashtra', 'population' => 1247327],
+            ['name' => 'Vasai-Virar', 'state' => 'Maharashtra', 'population' => 1222390],
+            ['name' => 'Varanasi', 'state' => 'Uttar Pradesh', 'population' => 1198491],
+            ['name' => 'Srinagar', 'state' => 'Jammu and Kashmir', 'population' => 1180570],
+            ['name' => 'Aurangabad', 'state' => 'Maharashtra', 'population' => 1175116],
+            ['name' => 'Dhanbad', 'state' => 'Jharkhand', 'population' => 1162472],
+            ['name' => 'Amritsar', 'state' => 'Punjab', 'population' => 1132383],
+            ['name' => 'Navi Mumbai', 'state' => 'Maharashtra', 'population' => 1120547],
+            ['name' => 'Prayagraj', 'state' => 'Uttar Pradesh', 'population' => 1112544],
+            ['name' => 'Howrah', 'state' => 'West Bengal', 'population' => 1077075],
+            ['name' => 'Ranchi', 'state' => 'Jharkhand', 'population' => 1073427],
+            ['name' => 'Jabalpur', 'state' => 'Madhya Pradesh', 'population' => 1055525],
+            ['name' => 'Gwalior', 'state' => 'Madhya Pradesh', 'population' => 1054420],
+            ['name' => 'Coimbatore', 'state' => 'Tamil Nadu', 'population' => 1050721],
+            ['name' => 'Vijayawada', 'state' => 'Andhra Pradesh', 'population' => 1038333],
+            ['name' => 'Jodhpur', 'state' => 'Rajasthan', 'population' => 1033918],
+            ['name' => 'Madurai', 'state' => 'Tamil Nadu', 'population' => 1017865],
+            ['name' => 'Raipur', 'state' => 'Chhattisgarh', 'population' => 1010087],
+            ['name' => 'Kota', 'state' => 'Rajasthan', 'population' => 1001694],
+            ['name' => 'Guwahati', 'state' => 'Assam', 'population' => 963429],
+            ['name' => 'Chandigarh', 'state' => 'Chandigarh', 'population' => 960787],
+            ['name' => 'Solapur', 'state' => 'Maharashtra', 'population' => 951558],
+            ['name' => 'Hubballi-Dharwad', 'state' => 'Karnataka', 'population' => 943788],
+            ['name' => 'Mysore', 'state' => 'Karnataka', 'population' => 920550],
+            ['name' => 'Tiruchirappalli', 'state' => 'Tamil Nadu', 'population' => 916674],
+            ['name' => 'Bareilly', 'state' => 'Uttar Pradesh', 'population' => 903668],
+            ['name' => 'Aligarh', 'state' => 'Uttar Pradesh', 'population' => 872575],
+            ['name' => 'Tiruppur', 'state' => 'Tamil Nadu', 'population' => 877778],
+            ['name' => 'Gurgaon', 'state' => 'Haryana', 'population' => 876824],
+            ['name' => 'Moradabad', 'state' => 'Uttar Pradesh', 'population' => 889810],
+            ['name' => 'Jalandhar', 'state' => 'Punjab', 'population' => 862886],
+            ['name' => 'Bhubaneswar', 'state' => 'Odisha', 'population' => 837737],
+            ['name' => 'Salem', 'state' => 'Tamil Nadu', 'population' => 829267],
+            ['name' => 'Mira-Bhayandar', 'state' => 'Maharashtra', 'population' => 814655],
+            ['name' => 'Warangal', 'state' => 'Telangana', 'population' => 811844],
+            ['name' => 'Guntur', 'state' => 'Andhra Pradesh', 'population' => 743354],
+            ['name' => 'Bhiwandi', 'state' => 'Maharashtra', 'population' => 709665],
+            ['name' => 'Saharanpur', 'state' => 'Uttar Pradesh', 'population' => 705478],
+            ['name' => 'Gorakhpur', 'state' => 'Uttar Pradesh', 'population' => 673446],
+            ['name' => 'Bikaner', 'state' => 'Rajasthan', 'population' => 644406],
+            ['name' => 'Amravati', 'state' => 'Maharashtra', 'population' => 647057],
+            ['name' => 'Noida', 'state' => 'Uttar Pradesh', 'population' => 642381],
+            ['name' => 'Jamshedpur', 'state' => 'Jharkhand', 'population' => 631364],
+            ['name' => 'Bhilai', 'state' => 'Chhattisgarh', 'population' => 625697],
+            ['name' => 'Cuttack', 'state' => 'Odisha', 'population' => 606007],
+            ['name' => 'Firozabad', 'state' => 'Uttar Pradesh', 'population' => 603797],
+            ['name' => 'Kochi', 'state' => 'Kerala', 'population' => 601574],
+            ['name' => 'Bhavnagar', 'state' => 'Gujarat', 'population' => 593768],
+            ['name' => 'Dehradun', 'state' => 'Uttarakhand', 'population' => 578420],
+            ['name' => 'Durgapur', 'state' => 'West Bengal', 'population' => 566517],
+            ['name' => 'Asansol', 'state' => 'West Bengal', 'population' => 563917],
+            ['name' => 'Nanded', 'state' => 'Maharashtra', 'population' => 550564],
+            ['name' => 'Kolhapur', 'state' => 'Maharashtra', 'population' => 549283],
+            ['name' => 'Ajmer', 'state' => 'Rajasthan', 'population' => 542321],
+            ['name' => 'Gulbarga', 'state' => 'Karnataka', 'population' => 532031],
+            ['name' => 'Jamnagar', 'state' => 'Gujarat', 'population' => 529308],
+            ['name' => 'Ujjain', 'state' => 'Madhya Pradesh', 'population' => 515215],
+            ['name' => 'Loni', 'state' => 'Uttar Pradesh', 'population' => 512296],
+            ['name' => 'Siliguri', 'state' => 'West Bengal', 'population' => 509709],
+            ['name' => 'Jhansi', 'state' => 'Uttar Pradesh', 'population' => 507293],
+            ['name' => 'Ulhasnagar', 'state' => 'Maharashtra', 'population' => 506098],
+            ['name' => 'Nellore', 'state' => 'Andhra Pradesh', 'population' => 505258],
+            ['name' => 'Jammu', 'state' => 'Jammu and Kashmir', 'population' => 502197],
+            ['name' => 'Belgaum', 'state' => 'Karnataka', 'population' => 488157],
+            ['name' => 'Mangalore', 'state' => 'Karnataka', 'population' => 484785],
+            ['name' => 'Udaipur', 'state' => 'Rajasthan', 'population' => 451100],
+            ['name' => 'Tirunelveli', 'state' => 'Tamil Nadu', 'population' => 444543],
+            ['name' => 'Malegaon', 'state' => 'Maharashtra', 'population' => 435362],
+            ['name' => 'Gaya', 'state' => 'Bihar', 'population' => 437938],
+            ['name' => 'Jalgaon', 'state' => 'Maharashtra', 'population' => 460468],
+            ['name' => 'Udaipur', 'state' => 'Rajasthan', 'population' => 451100],
+            ['name' => 'Maheshtala', 'state' => 'West Bengal', 'population' => 448317],
+            ['name' => 'Tiruppur', 'state' => 'Tamil Nadu', 'population' => 444352]
+        ];
+
+        DB::table('towns')->insert($towns);
+    }
+}

@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Town;
 use App\Models\WeatherRaw;
 use App\Services\KafkaServices;
 use Illuminate\Console\Command;
@@ -15,7 +16,7 @@ class fetchWeatherDetails extends Command
      *
      * @var string
      */
-    protected $signature = 'app:fetch-weather-details';
+    protected $signature = 'app:fetch-weather';
 
     /**
      * The console command description.
@@ -26,9 +27,20 @@ class fetchWeatherDetails extends Command
 
     /**
      * Execute the console command.
+     * @throws \Exception
      */
-    public function handle()
+    public function handle(): void
     {
+        Town::all()->each(function (Town $town) {
+            $data = $this->fetchWeatherDetails($town->name);
+            $kafkaService = new KafkaServices();
+            $kafkaService->produce($data,'source','weather.raw');
+        });
+    }
+    public function fetchWeatherDetails($city)
+    {
+        if (empty($city))
+            throw new \Exception('city is null');
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
         ])->get(
@@ -38,14 +50,6 @@ class fetchWeatherDetails extends Command
                 'q' => 'katihar'
             ]
         );
-        $data = $response->json();
-//        if (!empty($data)) {
-//            WeatherRaw::create([
-//               'weather_data' => json_encode($data)
-//            ]);
-//        }
-        $kafkaService = new KafkaServices();
-        $kafkaService->produce($data,'source','weather.raw');
-
+        return $response->json();
     }
 }

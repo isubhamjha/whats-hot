@@ -50,13 +50,12 @@ class KafkaServices
         }
     }
 
-    public function consume(string $topic = null, string $groupId = null, callable $handler = null): self
+    public function consume(array $topics = null, string $groupId = null, callable $handler = null): self
     {
         try {
             $this->topic = $topic ?? $this->topic;
             $this->consumerGroup = $groupId ?? $this->consumerGroup;
-
-            $consumer = Kafka::consumer([$this->topic], $this->consumerGroup, $this->kafkaBroker)
+            $consumer = Kafka::consumer($topics, $this->consumerGroup, $this->kafkaBroker)
                 ->withHandler(function (ConsumerMessage|Collection $message) use ($handler) {
                     $handler ? $handler($message) : $this->handleMessage($message);
                 })
