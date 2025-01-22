@@ -44,7 +44,7 @@ class KafkaServices
                 ->withMessage($message)
                 ->send();
 
-            Log::info("Message produced to topic {$topic}", ['payload' => $payload]);
+//            Log::info("Message produced to topic {$topic}", ['payload' => $payload]);
         } catch (\Exception $e) {
             Log::error("Failed to produce message to topic {$topic}: " . $e->getMessage());
         }

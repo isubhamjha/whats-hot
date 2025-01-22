@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\WeatherRaw;
 use App\Services\KafkaServices;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
@@ -37,7 +38,9 @@ class KafkaConsumer extends Command
         $messages->each(function ($message) {
             if ($message->getTopicName() === env('CONSUMER_WEATHER_RAW')) {
                 $payload = $message->getBody();
-                dd($payload);
+                WeatherRaw::create([
+                    'weather_data' => json_encode($payload),
+                ]);
             }
         });
         return true;

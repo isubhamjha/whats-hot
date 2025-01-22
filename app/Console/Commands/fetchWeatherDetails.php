@@ -8,6 +8,7 @@ use App\Services\KafkaServices;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use const Widmogrod\Functional\emptyM;
 
 class fetchWeatherDetails extends Command
 {
@@ -31,10 +32,18 @@ class fetchWeatherDetails extends Command
      */
     public function handle(): void
     {
-        Town::all()->each(function (Town $town) {
+        Town::where('is_active',true)->each(function (Town $town) {
             $data = $this->fetchWeatherDetails($town->name);
-            $kafkaService = new KafkaServices();
-            $kafkaService->produce($data,'source','weather.raw');
+            if (!empty($data['error'])){
+                Log::error("Location: $town->name|| Error:".json_encode($data['error']));
+                $town->update([
+                    'is_active' => false,
+                    'remarks' => json_encode($data['error'])
+                ]);
+            }else {
+                $kafkaService = new KafkaServices();
+                $kafkaService->produce($data, 'source', 'weather.raw');
+            }
         });
     }
     public function fetchWeatherDetails($city)
@@ -47,7 +56,7 @@ class fetchWeatherDetails extends Command
             'http://api.weatherapi.com/v1/current.json',
             [
                 'key' => env('WEATHERAPI_KEY'),
-                'q' => 'katihar'
+                'q' => $city
             ]
         );
         return $response->json();
