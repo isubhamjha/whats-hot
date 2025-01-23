@@ -41,8 +41,9 @@ class fetchWeatherDetails extends Command
                     'remarks' => json_encode($data['error'])
                 ]);
             }else {
+                $weather_data = json_encode(['town_id'=> $town->id,'data'=>$data]);
                 $kafkaService = new KafkaServices();
-                $kafkaService->produce($data, 'source', 'weather.raw');
+                $kafkaService->produce($weather_data, 'source', env('CONSUMER_WEATHER_RAW'));
             }
         });
     }

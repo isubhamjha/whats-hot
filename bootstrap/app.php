@@ -13,7 +13,7 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withSchedule(function (Schedule $schedule) {
-       $schedule->command('app:fetch-weather')->everyMinute();
+       $schedule->command('app:fetch-weather')->everyMinute()->shouldSkipDueToOverlapping();
     })
     ->withMiddleware(function (Middleware $middleware) {
         //
