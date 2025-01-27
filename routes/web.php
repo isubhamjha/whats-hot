@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\Weather;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    $data = Weather::getWeatherAggregates(102,'hour');
+    dd($data);
 });

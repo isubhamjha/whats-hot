@@ -17,8 +17,8 @@ class KafkaServices
     protected string $dlqTopic;
     private bool $isDlqEnabled = true;
     private bool $isBatchConsumptionEnabled = true;
-    private int $batchSizeLimit = 100;
-    private int $batchReleaseInterval = 30000;
+    private int $batchSizeLimit = 100000;
+    private int $batchReleaseInterval = 1000;
 
     public function __construct()
     {

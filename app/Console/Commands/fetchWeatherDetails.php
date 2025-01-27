@@ -17,7 +17,7 @@ class fetchWeatherDetails extends Command
      *
      * @var string
      */
-    protected $signature = 'app:fetch-weather';
+    protected $signature = 'weather:fetch';
 
     /**
      * The console command description.
